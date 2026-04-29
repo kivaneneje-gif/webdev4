@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML-ATTRIBUTES</title>
+</head>
+<style>
+.highlight {
+    background-color: yellow;
+}
+.text-large {
+    font-size: 24px;
+
+}
+</style>
+<body>
+    <!-- Header section -->
+    <header>
+        <h1 id="header">HTML Attributes</h1>
+        <a href="#header">Welcome to the HTML Attributes page!</a>
+
+        
+        <p class="highlight text-large">This is a paragraph with class  which would be highlighted and large</p>
+        
+       
+      
+<p style="color: red; font-size: 20px;">This is a paragraph with inline style attribute that makes the text red and larger </p>
+
+
+
+<a href="https://example.com" title="Click to visit Example.com"> visit Example</a>
+
+
+<p lang="en"> this is japanese</p>`
+
+    </header>
+
+<h2 id="event-attributes">Event Attributes</h2>
+<p>Event attributes are used to specify actions that should be taken when certain events occur on an HTML element.
+    <ul>
+        <li><strong>onclick:</strong> specifies the action to be performed when an element is clicked</li>
+        <li><strong>onmouseover:</strong> specifies the action to be performed when the mouse pointer is moved over an element</li>
+        <li><strong>onmouseout:</strong> specifies the action to be performed when the mouse pointer is moved away from an element</li>
+        <li><strong>onchange:</strong> specifies the action to be performed when the value of an element changes</li>
+        <li><strong>onsubmit:</strong> specifies the action to be performed when a form is submitted</li>
+        <li><strong>onload:</strong> specifies the action to be performed when a page or an element finishes loading</li>
+        <li><strong>onfocus:</strong> specifies the action to be performed when an element receives focus</li>
+        <li><strong>onblur:</strong> specifies the action to be performed when an element loses focus</li>
+        <li><strong>onkeydown:</strong> specifies the action to be performed when a key is pressed down</li>
+    </ul>
+    <a href="https://example.com" title="when u click u visit example">visit Example</a>
+</p>
+    <div>
+        <h3> Html form attributes</h3>
+        <ul>
+            <li><strong>action:</strong> specifies where to send the form data when submitted</li>
+            <li><strong>method:</strong> specifies the HTTP method to use when submitting the form (GET or POST)</li>
+            <li><strong>enctype:</strong> specifies how the form data should be encoded when submitted</li>
+            <li><strong>name:</strong> assigns a name to the form, which can be used to reference it in scripts</li>
+            <li><strong>target:</strong> specifies where to display the response after submitting the form (e.g., _blank, _self)</li>
+        </ul>
+    
+    <form action="submit_form.php" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="user_name" required>
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="user_email" required>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+    <button type="button" onclick="alert('Form submitted!')">Submit Form</button>
+</body>
