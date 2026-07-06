@@ -1,0 +1,87 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: rgb(19, 16, 16);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: rgb(243, 243, 16);
+    position: relative;
+    padding: 30px;
+}
+.header-section {
+    background-color: #0a0a0a;
+    color: rgb(225, 225, 10);
+    padding: 20px ;
+    content-align: center;
+    text-align: center;
+    margin: auto;
+    border-radius: 40px;   
+}
+.header-text {
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: seashell;
+}
+.header-text2 {
+    font-size: 20px;
+    margin-bottom: 40px;
+}
+.exp-content {
+    background-color: #1a1a1a;
+    padding: 10px;
+    border-radius: 20px;
+    gap: 20px;
+    color: rgb(243, 243, 16);
+}
+.list {
+    list-style-type: none;
+    display: flex;
+    gap: 25px;
+    flex-direction: column;
+        
+}
+.button {
+    background-color: rgb(255, 255, 255);
+    color: #cdb90a;
+    border-radius: 40px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-size: 18px;
+    justify-content: center;
+
+}
+.button:hover {
+    background-color: #eed706;
+    color: rgb(255, 255, 255);
+}
+
+.main-content{
+        width: 100%;
+        max-width: 1300px;
+        margin: 120px auto;
+        display: flex;
+        flex-direction: column;
+        gap: 120px;}
+ 
+.section-header {
+    background-color: #1a1a1a;
+    color: rgb(250, 255, 240);
+    padding: 30px 40px;
+    border-radius: 20px;
+    font-size: 30px;
+}
+.section-tag {
+    background-color: #0a0a0a;
+    color: rgb(250, 255, 240);
+    padding: 20px 30px;
+    border-radius: 20px;
+    font-size: 20px;
+    display: inline-block;
+}
+.section-tag-hover:hover {
+    background-color: #daea25;
+    color: rgb(250, 255, 240);
+}
+

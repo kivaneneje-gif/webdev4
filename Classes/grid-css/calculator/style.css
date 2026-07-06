@@ -1,0 +1,317 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI, sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#f7f4ee,#ffffff);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+/* Calculator */
+
+.calc{
+    width:420px;
+    background:#ffffff;
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.18);
+}
+
+/* ================= TOP BAR ================= */
+
+.topbar{
+    background:#111;
+    color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 20px;
+}
+
+.topbar-title{
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+.dots{
+    display:flex;
+    gap:8px;
+}
+
+.dot{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+}
+
+.dot-red{
+    background:#ff5f57;
+}
+
+.dot-amber{
+    background:#febc2e;
+}
+
+.dot-purple{
+    background:#7c3aed;
+}
+
+/* ================= TABS ================= */
+
+.tabs{
+    display:flex;
+    background:#f7f4ee;
+}
+
+.tab{
+    flex:1;
+    padding:14px;
+    border:none;
+    cursor:pointer;
+    font-size:15px;
+    background:transparent;
+    transition:.3s;
+}
+
+.tab:hover{
+    background:white;
+}
+
+.active{
+    background:#111;
+    color:white;
+}
+
+.inactive{
+    color:#555;
+}
+
+/* ================= DISPLAY ================= */
+
+.display{
+    padding:25px;
+    background:white;
+}
+
+.expr-line{
+    min-height:25px;
+    color:#777;
+    text-align:right;
+    font-size:18px;
+}
+
+.result-line{
+    text-align:right;
+    font-size:42px;
+    font-weight:bold;
+    color:#111;
+}
+
+/* badges */
+
+.badges{
+    margin-top:18px;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.badge{
+    padding:6px 12px;
+    border-radius:50px;
+    font-size:12px;
+}
+
+.badge-mem{
+    background:#ececec;
+}
+
+.badge-ans{
+    background:#f5efe3;
+}
+
+.badge-deg{
+    background:#111;
+    color:white;
+    cursor:pointer;
+}
+
+/* ================= MEMORY ================= */
+
+.mem-row{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:10px;
+    padding:18px;
+}
+
+.btn-mem{
+    background:#fafafa;
+    text-align:center;
+    padding:12px;
+    border-radius:12px;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.btn-mem:hover{
+    background:#111;
+    color:white;
+}
+
+/* ================= SCIENTIFIC ================= */
+
+.section-hidden{
+    display:none;
+}
+
+.inv-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px;
+}
+
+.sci-grid{
+    padding:0 20px 20px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+}
+
+.btn-sci{
+    background:#f7f4ee;
+    text-align:center;
+    padding:14px;
+    border-radius:12px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.btn-sci:hover{
+    background:#111;
+    color:white;
+}
+
+/* ================= HISTORY ================= */
+
+.hist-header{
+    display:flex;
+    justify-content:space-between;
+    padding:20px;
+}
+
+.hist-panel{
+    padding:0 20px 20px;
+    max-height:200px;
+    overflow:auto;
+}
+
+.hist-item{
+    background:#f8f8f8;
+    margin-bottom:8px;
+    padding:12px;
+    border-radius:10px;
+}
+
+.hist-clear-btn{
+    border:none;
+    background:#111;
+    color:white;
+    padding:8px 15px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+/* ================= BUTTON GRID ================= */
+
+.main-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    padding:20px;
+}
+
+.btn{
+    height:70px;
+    border:none;
+    border-radius:18px;
+    cursor:pointer;
+    font-size:24px;
+    transition:.25s;
+}
+
+/* numbers */
+
+.btn-num{
+    background:white;
+    box-shadow:0 5px 10px rgba(0,0,0,.08);
+}
+
+.btn-num:hover{
+    transform:translateY(-3px);
+}
+
+/* operators */
+
+.btn-op{
+    background:#111;
+    color:white;
+}
+
+.btn-op:hover{
+    background:#000;
+}
+
+/* equal */
+
+.btn-eq{
+    background:#8c6b42;
+    color:white;
+}
+
+.btn-eq:hover{
+    background:#70552f;
+}
+
+/* AC */
+
+.btn-ac{
+    background:#ff5d5d;
+    color:white;
+}
+
+/* delete */
+
+.btn-del{
+    background:#444;
+    color:white;
+}
+
+/* function */
+
+.btn-fn{
+    background:#f7f4ee;
+}
+
+.btn-fn:hover{
+    background:#ddd;
+}
+
+.divider{
+    height:1px;
+    background:#ececec;
+}
+
+button:active,
+.btn-mem:active,
+.btn-sci:active{
+    transform:scale(.95);
+}

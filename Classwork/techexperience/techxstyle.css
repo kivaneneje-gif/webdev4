@@ -1,0 +1,763 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+html{
+    scroll-behavior: smooth;}
+    body{
+        font-family: 'Poppins', sans-serif;  
+        min-height: 100vh;
+        background: linear-gradient(135deg, #050816, #0f172a, #111827);
+        color: #ffffff;
+    overflow-x: hidden;
+    position: relative;
+    padding: 40px;}
+
+    body::before{scroll-behavior: smooth;
+        content: "";
+        position: fixed;
+        width: 500px;
+        height: 500px;
+         background: rgba(0, 153, 255, 0.15);
+    border-radius: 50%;
+    top: -120px;
+    left: -120px;
+    filter: blur(120px);
+    animation: floatGlow 8s ease-in-out infinite alternate;
+    z-index: -1;
+}
+body::after{
+    content: "";
+    position: fixed; width: 400px;
+    height: 400px;
+    background: rgba(168, 85, 247, 0.12);
+    border-radius: 50%;
+    bottom: -100px;
+    right: -100px;
+    filter: blur(120px);
+    animation: floatGlow2 10s ease-in-out infinite alternate;
+    z-index: -1;
+}@keyframes floatGlow{
+    from{
+        transform: translateY(0px);
+    }
+
+    to{
+        transform: translateY(40px);
+    }
+}
+
+@keyframes floatGlow2{
+    from{
+        transform: translateX(0px);
+    }
+
+    to{
+        transform: translateX(-40px);
+    }
+}
+
+/* ===========================
+   HEADER SECTION
+=========================== */
+.header-section{
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 70px 50px;
+    border-radius: 28px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow:
+    0 0 25px rgba(0,0,0,0.4),
+    0 0 80px rgba(0,153,255,0.08);
+
+    animation: fadeIn 1.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ===========================
+   HEADER SHINE EFFECT
+=========================== */
+.header-section::before{
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 600px;
+    background: rgba(255,255,255,0.08);
+    top: -150px;
+    left: -220px;
+    transform: rotate(25deg);
+    transition: 0.8s;
+}
+
+.header-section:hover::before{
+    left: 130%;
+}
+
+/* ===========================
+   MAIN HEADING
+=========================== */
+.header-text{
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
+    background: linear-gradient(to right, #38bdf8, #818cf8, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    margin-bottom: 25px;
+
+    animation: slideDown 1s ease;
+}
+
+/* ===========================
+   PARAGRAPH TEXT
+=========================== */
+.header-text2{
+    font-size: 1.1rem;
+    line-height: 1.9;
+    max-width: 850px;
+    color: rgba(255,255,255,0.82);
+    margin-bottom: 45px;
+
+    animation: fadeText 1.5s ease;
+}
+
+.header-text2 strong{
+    color: #38bdf8;
+    font-weight: 700;
+}
+
+/* ===========================
+   CONTENT AREA
+=========================== */
+.exp-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+/* ===========================
+   LIST STYLING
+=========================== */
+.exp-content ul{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    list-style: none;
+}
+
+.exp-content ul li{
+    position: relative;
+    padding-left: 30px;
+}
+
+/* CUSTOM BULLET */
+.exp-content ul li::before{
+    content: "✦";
+    position: absolute;
+    left: 0;
+    color: #38bdf8;
+    font-size: 1rem;
+    top: 2px;
+}
+
+/* LINKS */
+.exp-content ul li a{
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: 0.4s ease;
+    position: relative;
+}
+
+/* UNDERLINE HOVER */
+.exp-content ul li a::after{
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(to right, #38bdf8, #c084fc);
+    left: 0;
+    bottom: -5px;
+    transition: 0.4s ease;
+}
+
+.exp-content ul li a:hover::after{
+    width: 100%;
+}
+
+.exp-content ul li a:hover{
+    color: #38bdf8;
+    transform: translateX(5px);
+}
+
+/* ===========================
+   BUTTON STYLING
+=========================== */
+.button{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 18px 34px;
+    border-radius: 60px;
+
+    background: linear-gradient(135deg, #0ea5e9, #8b5cf6);
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+
+    box-shadow:
+    0 10px 25px rgba(14,165,233,0.35);
+
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* BUTTON GLOW */
+.button::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.15);
+    top: 0;
+    left: -100%;
+    transition: 0.5s;
+}
+
+.button:hover::before{
+    left: 100%;
+}
+
+.button:hover{
+    transform: translateY(-6px) scale(1.03);
+    box-shadow:
+    0 15px 40px rgba(139,92,246,0.45);
+}
+
+/* ===========================
+   ANIMATIONS
+=========================== */
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes slideDown{
+    from{
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+
+    to{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes fadeText{
+    from{
+        opacity: 0;
+    }
+
+    to{
+        opacity: 1;
+    }
+}
+
+/* ===========================
+   RESPONSIVE DESIGN
+=========================== */
+@media(max-width: 768px){
+
+    body{
+        padding: 20px;
+    }
+
+    .header-section{
+        padding: 50px 30px;
+    }
+
+    .header-text{
+        font-size: 2.4rem;
+    }
+
+    .header-text2{
+        font-size: 1rem;
+    }
+
+    .exp-content{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .button{
+        width: 100%;
+        text-align: center;
+    }
+}
+/* =========================
+   MAIN CONTENT LAYOUT
+========================= */
+.main-content{
+    width: 100%;
+    max-width: 1300px;
+    margin: 120px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 120px;
+}
+
+/* =========================
+   GLOBAL CARD STYLE
+========================= */
+.card,
+.success-journey-section,
+.gmbk-section{
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 30px;
+    padding: 70px 50px;
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+    0 10px 40px rgba(0,0,0,0.35),
+    0 0 60px rgba(59,130,246,0.05);
+
+    position: relative;
+    overflow: hidden;
+}
+
+/* =========================
+   SHINE EFFECT
+========================= */
+.card::before,
+.success-journey-section::before,
+.gmbk-section::before{
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 600px;
+    background: rgba(255,255,255,0.04);
+    transform: rotate(25deg);
+    top: -200px;
+    left: -250px;
+    transition: 0.8s ease;
+}
+
+.card:hover::before,
+.success-journey-section:hover::before,
+.gmbk-section:hover::before{
+    left: 140%;
+}
+
+/* =========================
+   SECTION HEADER
+========================= */
+.section-header,
+.success-header,
+.gmbk-header{
+    margin-bottom: 60px;
+}
+
+/* SMALL TAG */
+.section-tag,
+.success-tag,
+.gmbk-tagline{
+    display: inline-block;
+    padding: 10px 22px;
+    border-radius: 50px;
+    background: rgba(59,130,246,0.12);
+    border: 1px solid rgba(59,130,246,0.2);
+
+    color: #38bdf8;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+}
+
+/* MAIN TITLES */
+.main-section-header,
+.success-main-title,
+.gmbk-main-title{
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1.2;
+    font-weight: 800;
+    margin-bottom: 20px;
+
+    background: linear-gradient(to right, #ffffff, #60a5fa, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* SUBTITLE */
+.section-subtitle,
+.success-subtitle,
+.gmbk-introduction{
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.8;
+    max-width: 850px;
+}
+
+/* =========================
+   BODY PARAGRAPH TYPOGRAPHY
+========================= */
+.main-section-text,
+.story-text,
+.motivation-card-text,
+.layer-text,
+.content-layer p,
+.timeline-text,
+.impact-description{
+    font-size: 1rem;
+    line-height: 2;
+    color: rgba(255,255,255,0.78);
+}
+
+/* =========================
+   JOURNEY CARD BOX MODEL
+========================= */
+.journey-box-model{
+    margin-top: 60px;
+}
+
+.journey-card{
+    border-radius: 28px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.03);
+
+    transition: 0.5s ease;
+}
+
+.journey-card:hover{
+    transform: translateY(-10px);
+    box-shadow:
+    0 15px 50px rgba(59,130,246,0.15);
+}
+
+.card-layer{
+    padding: 35px;
+}
+
+.primary-layer{
+    background: rgba(255,255,255,0.02);
+}
+
+.secondary-layer{
+    margin-top: 20px;
+    border-left: 3px solid #38bdf8;
+    background: rgba(255,255,255,0.03);
+    border-radius: 18px;
+}
+
+.content-layer{
+    margin-top: 20px;
+    padding: 25px;
+    border-radius: 18px;
+    background: rgba(0,0,0,0.2);
+}
+
+/* =========================
+   CARD TITLES
+========================= */
+.layer-title,
+.story-title,
+.motivation-card-title{
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: white;
+}
+
+/* =========================
+   TECH STACK SECTION
+========================= */
+.tech-details{
+    margin-top: 70px;
+    padding: 35px;
+    border-radius: 25px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.details-summary{
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #38bdf8;
+    margin-bottom: 30px;
+}
+
+/* TECH LIST */
+.tech-stack-list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    list-style: none;
+}
+
+.tech-item{
+    padding: 15px 25px;
+    border-radius: 50px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+
+    color: white;
+    font-weight: 500;
+
+    transition: 0.4s ease;
+}
+
+.tech-item:hover{
+    transform: translateY(-5px);
+    background: linear-gradient(135deg, #0ea5e9, #8b5cf6);
+}
+
+/* =========================
+   STORY GRID
+========================= */
+.success-story-container,
+.motivation-content-wrapper{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* STORY CARDS */
+.story-card,
+.motivation-card{
+    padding: 35px;
+    border-radius: 28px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+
+    transition: 0.5s ease;
+    position: relative;
+}
+
+.story-card:hover,
+.motivation-card:hover{
+    transform: translateY(-10px);
+    box-shadow:
+    0 15px 50px rgba(59,130,246,0.15);
+}
+
+/* =========================
+   TIMELINE
+========================= */
+.developer-timeline{
+    margin-top: 90px;
+}
+
+.timeline-track{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.timeline-point{
+    flex: 1;
+    min-width: 220px;
+
+    padding: 30px;
+    border-radius: 24px;
+
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.timeline-year{
+    display: inline-block;
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #38bdf8;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.projects-button,
+.motivation-button,
+.motivation-link{
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+
+    padding: 18px 35px;
+    border-radius: 60px;
+
+    background: linear-gradient(135deg, #0ea5e9, #8b5cf6);
+    color: white;
+
+    text-decoration: none;
+    font-weight: 600;
+
+    transition: 0.4s ease;
+
+    box-shadow:
+    0 10px 30px rgba(14,165,233,0.25);
+}
+
+.projects-button:hover,
+.motivation-button:hover,
+.motivation-link:hover{
+    transform: translateY(-6px) scale(1.03);
+}
+
+/* =========================
+   MOTIVATION NAVIGATION
+========================= */
+.motivation-navigation{
+    margin-bottom: 60px;
+}
+
+.link-content{
+    display: flex;
+    flex-direction: column;
+}
+
+.link-title{
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+
+.link-subtext{
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6;
+}
+
+/* =========================
+   QUOTE SECTION
+========================= */
+.gmbk-quote-container{
+    margin-top: 80px;
+    text-align: center;
+    padding: 50px;
+
+    border-radius: 28px;
+
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.gmbk-quote{
+    font-size: clamp(1.4rem, 3vw, 2.3rem);
+    line-height: 1.6;
+    font-weight: 700;
+    color: white;
+}
+
+.quote-author{
+    margin-top: 20px;
+    color: #38bdf8;
+    font-weight: 600;
+}
+
+/* =========================
+   IMPACT SECTION
+========================= */
+.developer-impact-section{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+
+    margin-top: 70px;
+}
+
+.impact-card{
+    padding: 40px;
+    border-radius: 28px;
+
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+
+    text-align: center;
+
+    transition: 0.4s ease;
+}
+
+.impact-card:hover{
+    transform: translateY(-8px);
+}
+
+.impact-number{
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+
+    background: linear-gradient(to right, #38bdf8, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* =========================
+   FOOTERS
+========================= */
+.success-footer,
+.gmbk-footer{
+    margin-top: 80px;
+    text-align: center;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media(max-width: 768px){
+
+    .main-content{
+        gap: 80px;
+    }
+
+    .card,
+    .success-journey-section,
+    .gmbk-section{
+        padding: 50px 25px;
+    }
+
+    .main-section-header,
+    .success-main-title,
+    .gmbk-main-title{
+        font-size: 2.2rem;
+    }
+
+    .timeline-track{
+        flex-direction: column;
+    }
+
+    .projects-button,
+    .motivation-button,
+    .motivation-link{
+        width: 100%;
+        justify-content: center;
+    }
+
+    .gmbk-quote{
+        font-size: 1.3rem;
+    }
+}
+

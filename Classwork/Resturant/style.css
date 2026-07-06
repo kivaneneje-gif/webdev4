@@ -1,0 +1,488 @@
+*{
+    margin: 0;
+    padding: 5px 10px;
+    box-sizing: border-box;
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background:rgb(246, 246, 246) ;
+    color: rgb(7, 0, 0);
+}
+.hero{
+   
+  justify-content: space-between; 
+  padding: 20px 20px;
+  align-items: center;
+  background-color: rgb(244, 242, 242);
+  border-radius: 10px;
+  border-color: rgb(10, 0, 0);
+  border-style: 10px;
+  border: 5px solid;
+}
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10px;
+}
+.logo{
+    font-size: 20px;
+    color: rgb(28, 28, 29);
+}
+.logo:hover{
+    color: aliceblue;
+    cursor: pointer;
+
+}
+.nav-buttons button{
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: bold;
+}
+.login-btn{
+    background:rgb(14, 13, 13);
+    color: rgb(248, 248, 248);
+    
+    }
+    .signup-btn{
+        background: rgb(14, 13, 13);
+        color: rgb(247, 236, 236);
+         }
+         .login-btn:hover{
+            color: rgb(7, 7, 7);
+            background: #fdfdfd;
+
+         }
+         .signup-btn:hover{
+            color: rgb(14, 13, 13);
+            background: #f8f8f5;
+            
+         }
+         .hero-content{
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        .hero-content h1{
+            font-size: 65px;
+            max-width: 900px;
+            margin-bottom: 20px;
+        }
+        .hero-content p{
+            font-size: 22px;
+            max-width: 700px;
+            margin-bottom: 10px;
+        }
+        
+    .rating{
+    margin-bottom: 30px;
+    font-size: 30px;
+    color: #141413;
+     }
+     .hero-buttons button{
+        padding: 15px 30px;
+        border: none;
+        border-radius: 30px;
+        margin: 10px;
+        cursor: pointer;
+        font-size: 10px;
+        font-weight: bold;
+    }
+    .primary-btn{
+        background: rgb(20, 13, 3);
+        color: white;
+    }
+    .secondary-btn{
+        background: rgb(14, 0, 0);
+        color: rgb(250, 248, 248);
+    }
+    .secondary-btn:hover{
+        background: rgb(248, 245, 245);
+        color: rgb(9, 0, 0);
+    }
+    .primary-btn:hover{
+        background: whitesmoke;
+        color: black;
+    }
+    .meals-section{
+        padding: 80px 10%;
+        justify-content: flex-start; 
+        background: #141413;
+        border-radius: 30px;
+        margin-top: 40px;
+        border-color: black snow;
+        border: solid 20px;
+
+    }
+    .meals-section h2{
+        text-align: center;
+        font-size: 40px;
+        margin-bottom: 50px;
+        color: aliceblue;
+    }
+    .meals-section::after{
+        
+    }
+    .meals-menu{
+        display: grid;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center; 
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+.meal-card{
+    width: 200px;
+    background: #fdfdfd;
+    border-radius: 20px;
+
+}
+.meal-card:hover{
+    color: rgb(247, 247, 247);
+    background: #141413;
+}
+.meal-card img{
+    width: 100%;
+    height: 150px;
+    
+} 
+
+.meal-info{
+ padding: 20px;
+ text-align: center;
+}
+.meal-info h3{
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.meal-info p{
+    margin-bottom: 15px;
+    color: #630303;
+    font-weight: bold;
+
+}
+
+.meal-info span{
+    display: block;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+.meal-info button{
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: bold;
+    color: #f7f5f5;
+    background: #141413;
+
+}
+.about-section{
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    padding: 60px 10%;
+    flex-wrap: wrap;
+}
+.about-image img{
+    width: 500px;
+    border-radius: 20px;
+    display: flex;
+}
+.about-text{
+    flex: 4;  
+}
+
+.about-text h2{
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+.about-text p{
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+.features-section{
+    background: #141413;
+    color: #f8f8f5;
+    padding: 80px 10%;
+}
+.features-section h2{
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 40px;
+}
+.features-container{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;  
+}
+.feature-box{
+    background: #b50a0a92;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    width: 210px; 
+}
+.feature-box i{
+    font-size: 40px;
+    color: rgb(243, 243, 241);
+    margin-bottom: 15px;
+}
+.reviews-section{
+    padding: 80px 10%;
+   text-align: center;
+}
+.reviews-section h4{
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 40px;
+}
+.review-container{
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.review-card{
+    width: 350px;
+    background: rgb(239, 238, 238);
+    padding: 30px;
+        border-radius: 20px;
+    border-color: #141413;
+border: solid 10px;
+}
+.footer{
+    padding: 50px 8%;   
+}
+.footer-content{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+.footer-content h3{
+    margin-bottom: 15px;
+}
+.footer-content button{
+    border-radius: 20px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: bold;
+    background: #141413;
+    color: #f8f8f5;
+    
+}
+.copyright{
+    text-align: center;
+    margin-top: 40px;
+    color: #999;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial, sans-serif;
+}
+
+
+.form-container{
+    position: relative;
+
+    width: 100%;
+    height: 100vh;
+
+    background:
+    url('images/food-bg.jpg');
+
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.overlay{
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0,0,0,0.65);
+}
+
+
+.form-box{
+    position: relative;
+
+    width: 420px;
+
+    background: rgba(255,255,255,0.95);
+
+    padding: 40px;
+
+    border-radius: 20px;
+
+    z-index: 1;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+
+.form-box h1{
+    text-align: center;
+    margin-bottom: 10px;
+
+    color: #111;
+}
+
+.form-box p{
+    text-align: center;
+    color: #555;
+
+    margin-bottom: 30px;
+}
+
+
+.input-box{
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-box i{
+    position: absolute;
+
+    left: 15px;
+    top: 18px;
+
+    color: #777;
+}
+
+.input-box input{
+    width: 100%;
+
+    padding: 15px 15px 15px 45px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 12px;
+
+    font-size: 16px;
+
+    outline: none;
+
+    transition: 0.3s;
+}
+
+.input-box input:focus{
+    border-color: darkorange;
+}
+
+
+.main-btn{
+    width: 100%;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: darkorange;
+
+    color: white;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.main-btn:hover{
+    background: #cc6f00;
+}
+
+
+.extra-links{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.extra-links a{
+    color: darkorange;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+.social-login{
+    margin-top: 30px;
+}
+
+.google-btn,
+.facebook-btn{
+    width: 100%;
+
+    padding: 14px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 12px;
+
+    background: white;
+
+    font-size: 16px;
+
+    margin-bottom: 15px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.google-btn:hover,
+.facebook-btn:hover{
+    background: #f5f5f5;
+}
+
+.google-btn i{
+    color: rgb(21, 20, 20);
+    margin-right: 10px;
+}
+
+.facebook-btn i{
+    color: rgb(10, 10, 11);
+}
+
+
+
+@media(max-width: 500px){
+
+    .form-box{
+        width: 90%;
+        padding: 30px 20px;
+    }
+
+}
