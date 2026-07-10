@@ -20,13 +20,14 @@
 
       <!-- Tabs -->
       <div class="tabs">
-        <button class="tab active" onclick="switchMode('std', this)">
+        <button class="tab active" data-mode="std">
           Standard
-        </button>
-        <button class="tab inactive" onclick="switchMode('sci', this)">
+      </button>
+      
+        <button class="tab active" data-mode="sci">
           Scientific
         </button>
-        <button class="tab inactive" onclick="switchMode('hist', this)">
+        <button class="tab active" data-mode="hist">
           History
         </button>
       </div>
@@ -64,21 +65,51 @@
           </label>
         </div>
         <div class="sci-grid">
-          <div class="btn-sci" id="s-sin" onclick="pressSci('sin')">sin</div>
-          <div class="btn-sci" id="s-cos" onclick="pressSci('cos')">cos</div>
-          <div class="btn-sci" id="s-tan" onclick="pressSci('tan')">tan</div>
-          <div class="btn-sci" id="s-log" onclick="pressSci('log')">log</div>
-          <div class="btn-sci" id="s-ln" onclick="pressSci('ln')">ln</div>
-          <div class="btn-sci" id="s-sqrt" onclick="pressSci('sqrt')">√x</div>
-          <div class="btn-sci" id="s-sq" onclick="pressSci('sq')">x²</div>
-          <div class="btn-sci" id="s-cube" onclick="pressSci('cube')">x³</div>
-          <div class="btn-sci" id="s-pow" onclick="pressSci('pow')">xⁿ</div>
-          <div class="btn-sci" id="s-cbrt" onclick="pressSci('cbrt')">∛x</div>
-          <div class="btn-sci" onclick="pressConst('pi')">π</div>
-          <div class="btn-sci" onclick="pressConst('e')">e</div>
-          <div class="btn-sci" onclick="pressSci('inv_x')">1/x</div>
-          <div class="btn-sci" onclick="pressSci('abs')">|x|</div>
-          <div class="btn-sci" onclick="pressSci('fact')">n!</div>
+          <button class="btn-sci" data-science="sin">sin</button>
+          <button class="btn-sci" data-science="cos">cos</button>
+          <button class="btn-sci" data-science="tan">tan</button>
+          <button class="btn-sci" data-science="log">log</button>
+          <button class="btn-sci" data-science="ln">ln</button>
+          <button class="btn-sci" data-science="sqrt">√x</button>
+          <button class="btn-sci" data-science="sq" onclick="pressSci('sq')">
+            x²
+          </button>
+          <button
+            class="btn-sci"
+            data-science="cube"
+            onclick="pressSci('cube')"
+          >
+            x³
+          </button>
+          <button class="btn-sci" data-science="pow" onclick="pressSci('pow')">
+            xⁿ
+          </button>
+          <button
+            class="btn-sci"
+            data-science="cbrt"
+            onclick="pressSci('cbrt')"
+          >
+            ∛x
+          </button>
+          <button class="btn-sci" data-constant="pi">π</button>
+          <button class="btn-sci" data-constant="e">e</button>
+          <button
+            class="btn-sci"
+            data-science="inv_x"
+            onclick="pressSci('inv_x')"
+          >
+            1/x
+          </button>
+          <button class="btn-sci" data-science="abs" onclick="pressSci('abs')">
+            |x|
+          </button>
+          <button
+            class="btn-sci"
+            data-science="fact"
+            onclick="pressSci('fact')"
+          >
+            n!
+          </button>
         </div>
         <div class="divider"></div>
       </div>
@@ -99,33 +130,33 @@
 
       <!-- Main Buttons -->
       <div class="main-grid">
-        <button class="btn btn-ac" onclick="pressAC()">AC</button>
-        <button class="btn btn-del" onclick="pressDel()">⌫</button>
-        <button class="btn btn-fn" onclick="pressFn('%')">%</button>
-        <button class="btn btn-op" onclick="pressOp('÷')">÷</button>
+        <button class="btn btn-ac" data-clear="pressAC()">AC</button>
+        <button class="btn btn-del" data-delete="pressDel()">⌫</button>
+        <button class="btn btn-fn" data-percentage="pressFn('%')">%</button>
+        <button class="btn btn-op" data-divide="pressOp('÷')">÷</button>
 
-        <button class="btn btn-num" onclick="pressNum('7')">7</button>
-        <button class="btn btn-num" onclick="pressNum('8')">8</button>
-        <button class="btn btn-num" onclick="pressNum('9')">9</button>
-        <button class="btn btn-op" onclick="pressOp('×')">×</button>
+        <button class="btn btn-num" data-number="7">7</button>
+        <button class="btn btn-num" data-number="8">8</button>
+        <button class="btn btn-num" data-number="9">9</button>
+        <button class="btn btn-op" data-operator="×">×</button>
 
-        <button class="btn btn-num" onclick="pressNum('4')">4</button>
-        <button class="btn btn-num" onclick="pressNum('5')">5</button>
-        <button class="btn btn-num" onclick="pressNum('6')">6</button>
-        <button class="btn btn-op" onclick="pressOp('−')">−</button>
+        <button class="btn btn-num" data-number="4">4</button>
+        <button class="btn btn-num" data-number="5">5</button>
+        <button class="btn btn-num" data-number="6">6</button>
+        <button class="btn btn-op" data-operator="−">−</button>
 
-        <button class="btn btn-num" onclick="pressNum('1')">1</button>
-        <button class="btn btn-num" onclick="pressNum('2')">2</button>
-        <button class="btn btn-num" onclick="pressNum('3')">3</button>
-        <button class="btn btn-op" onclick="pressOp('+')">+</button>
+        <button class="btn btn-num" data-number="1">1</button>
+        <button class="btn btn-num" data-number="2">2</button>
+        <button class="btn btn-num" data-number="3">3</button>
+        <button class="btn btn-op" data-operator="+">+</button>
 
-        <button class="btn btn-num" onclick="pressNum('0')">0</button>
+        <button class="btn btn-num" data-number="0">0</button>
 
-        <button class="btn btn-fn btn-zero" onclick="pressFn('+/-')">
+        <button class="btn btn-fn btn-zero" data-operator="pressFn('+/-')">
           +/−
         </button>
-        <button class="btn btn-num" onclick="pressDot()">.</button>
-        <button class="btn btn-eq" onclick="pressEq()">=</button>
+        <button class="btn btn-num" data-dot>.</button>
+        <button class="btn btn-eq" data-equal="pressEq()">=</button>
       </div>
     </div>
 

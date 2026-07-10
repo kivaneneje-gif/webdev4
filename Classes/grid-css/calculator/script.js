@@ -1,108 +1,70 @@
-let expression = "";
 
-const expr = document.getElementById("expr");
-const result = document.getElementById("result");
+document.querySelector("[data-clear]").addEventListener("click", () => {
 
-function updateDisplay(){
-    expr.textContent = expression;
-}
+    calculator.clear();
 
-function pressNum(num){
-    expression += num;
-    updateDisplay();
-}
+});
+document.querySelector("[data-delete]").addEventListener("click", () => {
 
-function pressDot(){
-    expression += ".";
-    updateDisplay();
-}
+    calculator.delete();
 
-function pressOp(op){
+});
+document.querySelector("[data-dot]").addEventListener("click", () => {
 
-    if(op==="×") op="*";
-    if(op==="÷") op="/";
-    if(op==="−") op="-";
+    calculator.pressDot();
 
-    expression += op;
-    updateDisplay();
-}
+});
+document.querySelector("[data-equal]").addEventListener("click", () => {
 
-function pressFn(fn){
+    calculator.pressEqual();
 
-    if(fn=="%"){
-        expression += "%";
-    }
+});
+document.querySelectorAll("[data-operator]").forEach(button => {
 
-    if(fn=="+/-"){
+    button.addEventListener("click", () => {
 
-        if(expression!=""){
-            expression=(-Number(expression)).toString();
-        }
-
-    }
-
-    updateDisplay();
-
-}
-
-function pressDel(){
-
-    expression=expression.slice(0,-1);
-
-    updateDisplay();
-
-}
-
-function pressAC(){
-
-    expression="";
-
-    result.textContent="0";
-
-    expr.textContent="";
-
-}
-
-function pressEq(){
-
-    try{
-
-        let answer=eval(expression);
-
-        result.textContent=answer;
-
-        document.getElementById("ans-badge").innerHTML="ANS: "+answer;
-
-        expression=answer.toString();
-
-    }
-
-    catch{
-
-        result.textContent="Error";
-
-    }
-
-}
-
-function switchMode(mode,btn){
-
-    document.querySelectorAll(".tab").forEach(tab=>{
-
-        tab.classList.remove("active");
-
-        tab.classList.add("inactive");
+        calculator.pressOperator(button.dataset.operator);
 
     });
 
-    btn.classList.add("active");
+});
 
-    btn.classList.remove("inactive");
+class Calculator{
 
-    document.getElementById("sci-section").style.display=
-    mode==="sci"?"block":"none";
+    constructor(){
+        ...
+    }
 
-    document.getElementById("hist-section").style.display=
-    mode==="hist"?"block":"none";
+    updateDisplay(){
+        ...
+    }
 
-}
+    pressNumber(num){
+        ...
+    }
+
+    pressOperator(op){
+        ...
+    }
+
+    delete(){
+        ...
+    }
+
+    clear(){
+        ...
+    }
+
+} 
+
+const calculator = new Calculator();
+
+document.querySelectorAll("[data-number]").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        calculator.pressNumber(button.dataset.number);
+
+    });
+
+});
