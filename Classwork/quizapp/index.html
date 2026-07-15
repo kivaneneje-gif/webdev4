@@ -1,0 +1,1592 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Ledger — 60-Question Market &amp; Crypto Quiz</title>
+    <style>
+      :root {
+        --bg: #0b1220;
+        --panel: #121a2b;
+        --panel-2: #16203450;
+        --line: #263252;
+        --text: #e8ecf1;
+        --muted: #8792a6;
+        --green: #2fbf71;
+        --red: #e5484d;
+        --gold: #c9a227;
+        --font-display: "Playfair Display", Georgia, serif;
+        --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        --font-mono: "IBM Plex Mono", "Courier New", monospace;
+      }
+
+      @font-face {
+        font-family: "Playfair Display";
+        src: local("Playfair Display");
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-body);
+        min-height: 100vh;
+      }
+
+      body {
+        background-image: radial-gradient(
+          ellipse at top,
+          #16203a 0%,
+          #0b1220 55%
+        );
+      }
+
+      .ticker-wrap {
+        width: 100%;
+        overflow: hidden;
+        background: #0a0f1c;
+        border-bottom: 1px solid var(--line);
+        padding: 10px 0;
+        white-space: nowrap;
+      }
+      .ticker {
+        display: inline-block;
+        padding-left: 100%;
+        animation: scroll-left 38s linear infinite;
+        font-family: var(--font-mono);
+        font-size: 13px;
+        letter-spacing: 0.02em;
+      }
+      .ticker span {
+        margin-right: 34px;
+      }
+      .ticker .up {
+        color: var(--green);
+      }
+      .ticker .down {
+        color: var(--red);
+      }
+      @keyframes scroll-left {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .ticker {
+          animation: none;
+          padding-left: 16px;
+        }
+      }
+
+      .stage {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 36px 20px 80px;
+      }
+
+      .masthead {
+        text-align: center;
+        margin-bottom: 28px;
+      }
+      .masthead .eyebrow {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--gold);
+      }
+      .masthead h1 {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 40px;
+        margin: 8px 0 6px;
+        line-height: 1.1;
+      }
+      .masthead p {
+        color: var(--muted);
+        font-size: 14.5px;
+        margin: 0;
+        max-width: 480px;
+        margin-inline: auto;
+      }
+      .rule {
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--line),
+          transparent
+        );
+        margin: 26px 0;
+      }
+
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 32px;
+      }
+      .start-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+        margin: 22px 0 28px;
+      }
+      .stat-card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 14px 16px;
+        background: #0e1626;
+      }
+      .stat-card .num {
+        font-family: var(--font-mono);
+        color: var(--gold);
+        font-size: 22px;
+        display: block;
+      }
+      .stat-card .label {
+        color: var(--muted);
+        font-size: 12.5px;
+      }
+
+      button.primary {
+        width: 100%;
+        background: var(--gold);
+        color: #1a1200;
+        border: none;
+        padding: 14px 20px;
+        font-family: var(--font-body);
+        font-weight: 700;
+        font-size: 15.5px;
+        border-radius: 8px;
+        cursor: pointer;
+        letter-spacing: 0.01em;
+        transition:
+          transform 0.12s ease,
+          background 0.2s ease;
+      }
+      button.primary:hover {
+        background: #ddb531;
+        transform: translateY(-1px);
+      }
+      button.primary:focus-visible {
+        outline: 3px solid #fff;
+        outline-offset: 2px;
+      }
+
+      .quiz-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+        gap: 12px;
+      }
+      .progress-label {
+        font-family: var(--font-mono);
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .progress-label b {
+        color: var(--text);
+      }
+
+      .timer {
+        font-family: var(--font-mono);
+        font-size: 15px;
+        padding: 6px 12px;
+        border-radius: 6px;
+        border: 1px solid var(--line);
+        background: #0e1626;
+        min-width: 58px;
+        text-align: center;
+      }
+      .timer.warn {
+        color: var(--red);
+        border-color: var(--red);
+      }
+
+      .progress-bar {
+        height: 4px;
+        background: #0e1626;
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 22px;
+        border: 1px solid var(--line);
+      }
+      .progress-bar-fill {
+        height: 100%;
+        background: var(--gold);
+        transition: width 0.3s ease;
+      }
+
+      .category-tag {
+        display: inline-block;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--gold);
+        border: 1px solid var(--gold);
+        border-radius: 20px;
+        padding: 3px 10px;
+        margin-bottom: 14px;
+      }
+
+      .question-text {
+        font-family: var(--font-display);
+        font-size: 23px;
+        line-height: 1.35;
+        margin: 0 0 22px;
+      }
+
+      .options {
+        display: grid;
+        gap: 10px;
+      }
+      .option {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-align: left;
+        width: 100%;
+        background: #0e1626;
+        border: 1px solid var(--line);
+        color: var(--text);
+        padding: 13px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-family: var(--font-body);
+        font-size: 15px;
+        transition:
+          border-color 0.15s ease,
+          background 0.15s ease;
+      }
+      .option:hover:not(:disabled) {
+        border-color: var(--gold);
+      }
+      .option:focus-visible {
+        outline: 2px solid var(--gold);
+        outline-offset: 1px;
+      }
+      .option .letter {
+        font-family: var(--font-mono);
+        color: var(--gold);
+        font-weight: 700;
+        width: 20px;
+        flex-shrink: 0;
+      }
+      .option:disabled {
+        cursor: default;
+        opacity: 0.75;
+      }
+      .option.correct {
+        border-color: var(--green);
+        background: #10251c;
+      }
+      .option.correct .letter {
+        color: var(--green);
+      }
+      .option.wrong {
+        border-color: var(--red);
+        background: #2a1416;
+      }
+      .option.wrong .letter {
+        color: var(--red);
+      }
+
+      .score-strip {
+        margin-top: 20px;
+        font-family: var(--font-mono);
+        font-size: 12.5px;
+        color: var(--muted);
+        display: flex;
+        justify-content: space-between;
+      }
+      .score-strip .ok {
+        color: var(--green);
+      }
+      .score-strip .no {
+        color: var(--red);
+      }
+
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(5, 8, 15, 0.72);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        z-index: 50;
+      }
+      .modal {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        max-width: 460px;
+        width: 100%;
+        padding: 28px;
+        animation: pop-in 0.18s ease;
+      }
+      @keyframes pop-in {
+        from {
+          transform: translateY(8px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      .modal .verdict {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+      .modal .verdict.ok {
+        color: var(--green);
+      }
+      .modal .verdict.no {
+        color: var(--red);
+      }
+      .modal h3 {
+        font-family: var(--font-display);
+        font-size: 20px;
+        margin: 0 0 12px;
+      }
+      .modal .answer-line {
+        font-size: 14.5px;
+        color: var(--text);
+        background: #0e1626;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 10px 14px;
+        margin-bottom: 14px;
+      }
+      .modal .answer-line b {
+        color: var(--gold);
+      }
+      .modal p.explain {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.55;
+        margin: 0 0 22px;
+      }
+
+      .results h2 {
+        font-family: var(--font-display);
+        font-size: 30px;
+        margin: 0 0 6px;
+        text-align: center;
+      }
+      .results .verdict-line {
+        text-align: center;
+        color: var(--muted);
+        font-size: 14.5px;
+        margin-bottom: 26px;
+      }
+      .score-ring-wrap {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 26px;
+      }
+      .score-ring {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        border: 6px solid var(--line);
+        position: relative;
+      }
+      .score-ring .pct {
+        font-family: var(--font-mono);
+        font-size: 34px;
+        color: var(--gold);
+      }
+      .score-ring .frac {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .breakdown {
+        display: grid;
+        gap: 10px;
+        margin-bottom: 26px;
+      }
+      .breakdown-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 13.5px;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 8px;
+      }
+      .breakdown-row span:first-child {
+        color: var(--muted);
+      }
+      .breakdown-row span:last-child {
+        font-family: var(--font-mono);
+      }
+
+      footer.note {
+        text-align: center;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 30px;
+        font-family: var(--font-mono);
+      }
+
+      .hidden {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ticker-wrap">
+      <div class="ticker" id="tickerTrack"></div>
+    </div>
+
+    <div class="stage">
+      <div class="masthead">
+        <div class="eyebrow">The Ledger — Financial Literacy Drill</div>
+        <h1>Markets, Crypto &amp; the Money Behind Them</h1>
+        <p>
+          60 questions on stock market history, index funds, blockchain,
+          memecoin scams, and how loans and leverage actually work. 20 seconds a
+          question — no looking it up.
+        </p>
+      </div>
+
+      <!-- START SCREEN -->
+
+      <div class="panel" id="startScreen">
+        <div class="start-grid">
+          <div class="stat-card">
+            <span class="num">60</span><span class="label">Questions</span>
+          </div>
+          <div class="stat-card">
+            <span class="num">20s</span><span class="label">Per question</span>
+          </div>
+          <div class="stat-card">
+            <span class="num">A–D</span
+            ><span class="label">Multiple choice</span>
+          </div>
+          <div class="stat-card">
+            <span class="num">5</span><span class="label">Topic sections</span>
+          </div>
+        </div>
+        <p
+          style="
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+          "
+        >
+          Covers: the Buttonwood Agreement and the birth of the NYSE, when the
+          S&amp;P 500 was created, who started the first index fund, how
+          blockchain and Bitcoin work, famous rug pulls and pump-and-dumps, and
+          how the Fed, mortgages, and leverage let some people borrow their way
+          to more wealth.
+        </p>
+        <button class="primary" id="startBtn">Start the quiz</button>
+      </div>
+
+      <!-- QUIZ SCREEN -->
+
+      <div class="panel hidden" id="quizScreen">
+        <div class="quiz-head">
+          <div class="progress-label">Question <b id="qNum">1</b> / 60</div>
+          <div class="timer" id="timerBox">20s</div>
+        </div>
+        <div class="progress-bar">
+          <div
+            class="progress-bar-fill"
+            id="progressFill"
+            style="width: 0%"
+          ></div>
+        </div>
+
+        <div class="category-tag" id="categoryTag">Stock Market Origins</div>
+        <h2 class="question-text" id="questionText">Loading...</h2>
+        <div class="options" id="optionsWrap"></div>
+
+        <div class="score-strip">
+          <span class="ok" id="okCount">Correct: 0</span>
+          <span class="no" id="noCount">Missed: 0</span>
+        </div>
+      </div>
+
+      <!-- RESULTS SCREEN -->
+
+      <div class="panel hidden results" id="resultsScreen">
+        <h2>Your Ledger Is Closed</h2>
+        <div class="verdict-line" id="resultVerdict">
+          Here's how you scored.
+        </div>
+        <div class="score-ring-wrap">
+          <div class="score-ring">
+            <span class="pct" id="resultPct">0%</span>
+            <span class="frac" id="resultFrac">0 / 60</span>
+          </div>
+        </div>
+        <div class="breakdown" id="breakdown"></div>
+        <button class="primary" id="restartBtn">Retake the quiz</button>
+      </div>
+
+      <footer class="note">
+        Educational drill only — nothing here is financial advice.
+      </footer>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal-backdrop hidden" id="modalBackdrop">
+      <div class="modal">
+        <div class="verdict" id="modalVerdict">CORRECT</div>
+        <h3 id="modalHeadline">Nice.</h3>
+        <div class="answer-line" id="modalAnswerLine"></div>
+        <p class="explain" id="modalExplain"></p>
+        <button class="primary" id="modalNextBtn">Next question</button>
+      </div>
+    </div>
+
+    <script>
+      const QUESTIONS = [
+        {
+          cat: "Stock Market Origins",
+          q: "What 1792 agreement is credited with founding what became the New York Stock Exchange?",
+          options: [
+            "The Buttonwood Agreement",
+            "The Wall Street Accord",
+            "The Manhattan Charter",
+            "The Exchange Compact",
+          ],
+          correct: 0,
+          explain:
+            "In 1792, 24 stockbrokers signed the Buttonwood Agreement under a buttonwood tree on Wall Street, agreeing to trade securities only among themselves — the informal start of the NYSE.",
+        },
+        {
+          cat: "Stock Market Origins",
+          q: "How many brokers originally signed the Buttonwood Agreement?",
+          options: ["12", "24", "50", "100"],
+          correct: 1,
+          explain:
+            "24 brokers and merchants signed the agreement in May 1792, setting basic rules for trading stocks and commissions.",
+        },
+        {
+          cat: "Stock Market Origins",
+          q: "In what year was the S&P 500 index expanded to track 500 companies?",
+          options: ["1929", "1957", "1971", "1987"],
+          correct: 1,
+          explain:
+            "Standard & Poor's had a smaller stock index since the 1920s, but expanded it to 500 companies in 1957, creating the S&P 500 as we know it today.",
+        },
+        {
+          cat: "Stock Market Origins",
+          q: 'What does "S&P" in S&P 500 stand for?',
+          options: [
+            "Stocks & Portfolios",
+            "Standard & Poor's",
+            "Securities & Prices",
+            "Shares & Percentages",
+          ],
+          correct: 1,
+          explain:
+            "S&P stands for Standard & Poor's, the financial services company that created and maintains the index.",
+        },
+        {
+          cat: "Stock Market Origins",
+          q: "Who is widely credited with launching the first index fund available to everyday investors?",
+          options: [
+            "Warren Buffett",
+            "John Bogle",
+            "Charlie Munger",
+            "Peter Lynch",
+          ],
+          correct: 1,
+          explain:
+            "John Bogle founded Vanguard and launched the First Index Investment Trust in 1976, letting regular investors buy a fund that simply tracked the market instead of trying to beat it.",
+        },
+        {
+          cat: "Stock Market Origins",
+          q: "What is an index fund, in plain terms?",
+          options: [
+            "A fund run by a star stock-picker",
+            "A fund that borrows money to trade",
+            "A fund that simply tracks a market index like the S&P 500",
+            "A fund only available to banks",
+          ],
+          correct: 2,
+          explain:
+            "An index fund holds the same stocks, in the same proportions, as a chosen index — it aims to match the market's return rather than beat it.",
+        },
+        {
+          cat: "Stock Market Origins",
+          q: "What's the main appeal of index funds compared to actively managed funds?",
+          options: [
+            "They guarantee profits",
+            "Lower fees and broad diversification, historically hard for active managers to beat over time",
+            "They only hold one stock",
+            "They pay out daily interest like a savings account",
+          ],
+          correct: 1,
+          explain:
+            "Index funds charge much lower fees since there's no manager picking stocks, and decades of data show most active managers fail to beat the index over the long run after fees.",
+        },
+        {
+          cat: "Stock Market Origins",
+          q: "What is a stock exchange?",
+          options: [
+            "A government tax office",
+            "A marketplace where shares of public companies are bought and sold",
+            "A type of savings account",
+            "A crypto wallet",
+          ],
+          correct: 1,
+          explain:
+            "A stock exchange is an organized marketplace, like the NYSE or Nasdaq, where buyers and sellers trade shares of publicly listed companies.",
+        },
+        {
+          cat: "Stock Market Origins",
+          q: 'What does a "bull market" describe?',
+          options: [
+            "A period of falling prices and pessimism",
+            "A period of rising prices and investor optimism",
+            "A market closed for the day",
+            "A market with only bonds",
+          ],
+          correct: 1,
+          explain:
+            "A bull market is a sustained period of rising prices, typically alongside investor confidence and economic growth.",
+        },
+        {
+          cat: "Stock Market Origins",
+          q: 'What does a "bear market" describe?',
+          options: [
+            "A market only for commodities",
+            "A sustained drop in prices, often 20% or more, alongside pessimism",
+            "A market that trades overnight only",
+            "A newly opened exchange",
+          ],
+          correct: 1,
+          explain:
+            "A bear market is a prolonged decline in prices — commonly defined as a fall of 20% or more from recent highs — usually paired with widespread pessimism.",
+        },
+        {
+          cat: "Stock Market Origins",
+          q: "What is diversification meant to do for an investor?",
+          options: [
+            "Guarantee no losses ever",
+            "Spread money across different assets to reduce the impact of any single one failing",
+            "Increase risk for higher short-term gains",
+            "Avoid paying any taxes",
+          ],
+          correct: 1,
+          explain:
+            "Diversification spreads investments across different assets or sectors so that one bad performer doesn't sink the whole portfolio — it reduces risk, but doesn't eliminate it.",
+        },
+        {
+          cat: "Stock Market Origins",
+          q: 'Why do investors talk about "the power of compounding" in long-term investing?',
+          options: [
+            "Because compounding only works for the wealthy",
+            "Because returns earned on your money start earning their own returns, snowballing over time",
+            "Because it removes all investment risk",
+            "Because it only applies to crypto",
+          ],
+          correct: 1,
+          explain:
+            "Compounding means your gains generate their own future gains. Left untouched over long periods, even modest average returns can grow significantly — which is why starting early matters.",
+        },
+
+        /* ---------- SECTION 2: Crypto & Blockchain Basics ---------- */
+
+        {
+          cat: "Crypto & Blockchain",
+          q: "Who is credited as the creator of Bitcoin?",
+          options: [
+            "Vitalik Buterin",
+            "Satoshi Nakamoto (a pseudonym, identity unconfirmed)",
+            "Elon Musk",
+            "Changpeng Zhao",
+          ],
+          correct: 1,
+          explain:
+            "Bitcoin was created by a person or group using the pseudonym Satoshi Nakamoto. Their true identity has never been confirmed.",
+        },
+        {
+          cat: "Crypto & Blockchain",
+          q: "In what year was the Bitcoin whitepaper published?",
+          options: ["2005", "2008", "2012", "2015"],
+          correct: 1,
+          explain:
+            "The Bitcoin whitepaper, titled 'Bitcoin: A Peer-to-Peer Electronic Cash System,' was published in October 2008.",
+        },
+        {
+          cat: "Crypto & Blockchain",
+          q: "When did the Bitcoin network officially go live with its first (genesis) block?",
+          options: ["1999", "January 2009", "2011", "2017"],
+          correct: 1,
+          explain:
+            "The Bitcoin genesis block was mined in January 2009, marking the network's launch.",
+        },
+        {
+          cat: "Crypto & Blockchain",
+          q: "What is a blockchain, at its core?",
+          options: [
+            "A single company's private database",
+            "A distributed, shared ledger made of linked blocks of transactions",
+            "A type of bank account",
+            "A physical vault for gold",
+          ],
+          correct: 1,
+          explain:
+            "A blockchain is a shared, distributed ledger where transactions are grouped into blocks, cryptographically linked in order, and copied across many computers instead of one central authority.",
+        },
+        {
+          cat: "Crypto & Blockchain",
+          q: 'What does "mining" mean in a Proof-of-Work cryptocurrency like Bitcoin?',
+          options: [
+            "Digging for physical coins",
+            "Competing to solve computational puzzles to validate transactions and add new blocks, earning rewards",
+            "Withdrawing money from a bank",
+            "Printing new paper currency",
+          ],
+          correct: 1,
+          explain:
+            "Miners use computing power to solve a cryptographic puzzle; the winner adds the next block and earns newly created coins plus fees as a reward.",
+        },
+        {
+          cat: "Crypto & Blockchain",
+          q: 'What is a "smart contract"?',
+          options: [
+            "A legal contract signed on paper then scanned",
+            "Self-executing code on a blockchain that runs automatically when conditions are met",
+            "A contract only banks can create",
+            "An insurance policy for crypto theft",
+          ],
+          correct: 1,
+          explain:
+            "A smart contract is code stored on a blockchain that automatically executes actions when pre-set conditions are met, without needing a middleman.",
+        },
+        {
+          cat: "Crypto & Blockchain",
+          q: "Who created Ethereum, the blockchain most known for smart contracts?",
+          options: [
+            "Vitalik Buterin, in 2015",
+            "Satoshi Nakamoto, in 2009",
+            "Jack Dorsey, in 2018",
+            "Sam Bankman-Fried, in 2019",
+          ],
+          correct: 0,
+          explain:
+            "Ethereum was proposed by Vitalik Buterin in 2013 and launched in 2015, adding programmable smart contracts on top of blockchain technology.",
+        },
+        {
+          cat: "Crypto & Blockchain",
+          q: "What's the main benefit decentralization is supposed to offer?",
+          options: [
+            "Faster internet speeds",
+            "No single point of control or failure, since no one entity runs the whole system",
+            "Guaranteed profit for holders",
+            "Free transactions with zero fees",
+          ],
+          correct: 1,
+          explain:
+            "Decentralization spreads control across many participants instead of one company or government, aiming to reduce the risk of a single point of failure or censorship.",
+        },
+        {
+          cat: "Crypto & Blockchain",
+          q: 'What is a crypto "wallet"?',
+          options: [
+            "A physical leather wallet for cash",
+            "Software or hardware that stores the keys needed to access and send your crypto",
+            "A bank branch that holds crypto",
+            "A government-issued ID for crypto users",
+          ],
+          correct: 1,
+          explain:
+            "A crypto wallet doesn't literally hold coins — it stores the private keys that prove ownership and let you sign transactions on the blockchain.",
+        },
+        {
+          cat: "Crypto & Blockchain",
+          q: "Why should a private key never be shared with anyone?",
+          options: [
+            "It's just for decoration",
+            "Whoever holds the private key has full control to move the funds — sharing it means giving away your money",
+            "It expires after a year",
+            "It's only used for tax reporting",
+          ],
+          correct: 1,
+          explain:
+            "A private key is the actual proof of ownership over crypto funds. Anyone who has it can move the funds — there's no bank to call to reverse it.",
+        },
+        {
+          cat: "Crypto & Blockchain",
+          q: "What consensus mechanism does Bitcoin use to validate transactions?",
+          options: [
+            "Proof of Stake",
+            "Proof of Work",
+            "Proof of Authority",
+            "Proof of Reserve",
+          ],
+          correct: 1,
+          explain:
+            "Bitcoin uses Proof of Work, where miners expend computing power to solve puzzles and validate blocks.",
+        },
+        {
+          cat: "Crypto & Blockchain",
+          q: "How does Proof of Stake differ from Proof of Work?",
+          options: [
+            "It requires no computers at all",
+            "Validators are chosen based on how much cryptocurrency they lock up (stake), using far less energy than mining",
+            "It's only used for stablecoins",
+            "It guarantees the coin's price will rise",
+          ],
+          correct: 1,
+          explain:
+            "In Proof of Stake, instead of competing with computing power, validators are selected based on the amount of currency they've staked as collateral — using dramatically less energy than Proof of Work mining.",
+        },
+
+        /* ---------- SECTION 3: Memecoins, Rug Pulls & Scams ---------- */
+
+        {
+          cat: "Memecoins & Scams",
+          q: 'What is a "rug pull" in crypto?',
+          options: [
+            "A promotional giveaway event",
+            "When developers abruptly abandon a project and drain its funds or liquidity, leaving investors with worthless tokens",
+            "A type of blockchain upgrade",
+            "A tax paid on crypto trades",
+          ],
+          correct: 1,
+          explain:
+            "A rug pull happens when a project's creators suddenly withdraw all the funds backing the token (or simply vanish), causing its value to collapse to near zero.",
+        },
+        {
+          cat: "Memecoins & Scams",
+          q: "What is a memecoin?",
+          options: [
+            "A coin backed by gold reserves",
+            "A cryptocurrency created around an internet joke or meme, usually with little to no underlying utility",
+            "A coin issued by a central bank",
+            "A stock traded only on weekends",
+          ],
+          correct: 1,
+          explain:
+            "Memecoins are tokens built around internet humor or trends rather than a working product — their value is driven almost entirely by hype and speculation.",
+        },
+        {
+          cat: "Memecoins & Scams",
+          q: 'What happened with the "Squid Game" token (SQUID) in 2021?',
+          options: [
+            "It became a top-10 cryptocurrency permanently",
+            "It rose thousands of percent on hype, then crashed to near zero after developers drained the liquidity — a textbook rug pull",
+            "It was officially licensed by Netflix and still trades today",
+            "It was a stablecoin pegged to the US dollar",
+          ],
+          correct: 1,
+          explain:
+            "SQUID token surged on hype tied to the show's name (without any official license), then its price crashed by over 99% in minutes after the developers pulled the liquidity and disappeared.",
+        },
+        {
+          cat: "Memecoins & Scams",
+          q: 'What is a "pump and dump" scheme?',
+          options: [
+            "A legitimate marketing strategy used by big banks",
+            "Artificially hyping an asset to inflate its price, then selling off holdings, leaving later buyers with losses",
+            "A type of mining hardware",
+            "A government stimulus program",
+          ],
+          correct: 1,
+          explain:
+            "In a pump and dump, insiders hype an asset to drive the price up, then sell (dump) their holdings at the peak, crashing the price on everyone who bought in based on the hype.",
+        },
+        {
+          cat: "Memecoins & Scams",
+          q: "Which of these is a common red flag of a scam crypto project?",
+          options: [
+            "A public, audited smart contract with a named team",
+            "Realistic, modest return projections",
+            'An anonymous team, guaranteed high returns, and pressure to "buy now before it\'s too late"',
+            "A multi-year track record of transparent reporting",
+          ],
+          correct: 2,
+          explain:
+            "Anonymity, promises of guaranteed returns, and urgency to buy immediately are classic pressure tactics used to rush people past due diligence.",
+        },
+        {
+          cat: "Memecoins & Scams",
+          q: "What is a Ponzi scheme?",
+          options: [
+            "A legal type of investment fund regulated by the SEC",
+            "A scheme that pays earlier investors using money from newer investors, collapsing once new money stops flowing in",
+            "A tax shelter for real estate",
+            "A type of index fund",
+          ],
+          correct: 1,
+          explain:
+            "A Ponzi scheme has no real underlying profit — it simply pays old investors with new investors' deposits, and inevitably collapses when recruitment slows.",
+        },
+        {
+          cat: "Memecoins & Scams",
+          q: "What was BitConnect, and what happened to it?",
+          options: [
+            "A well-regulated crypto exchange still operating today",
+            "A crypto lending platform promising guaranteed high daily returns, later shut down in 2018 and widely called a Ponzi scheme",
+            "A hardware wallet manufacturer",
+            "A central bank digital currency",
+          ],
+          correct: 1,
+          explain:
+            "BitConnect promised implausibly high, guaranteed returns through a trading bot. It collapsed in January 2018, wiping out billions in investor funds, and has since been treated as a textbook Ponzi scheme by regulators.",
+        },
+        {
+          cat: "Memecoins & Scams",
+          q: 'What does "FOMO" stand for, and how do scam projects exploit it?',
+          options: [
+            '"Fear Of Missing Out" — scammers create urgency so people buy impulsively without research',
+            '"Funds Officially Moved Out" — a technical blockchain term',
+            '"First Offer, Market Open" — a stock trading term',
+            '"Federal Oversight of Market Operations"',
+          ],
+          correct: 0,
+          explain:
+            "FOMO is the anxiety of missing a big opportunity. Scam projects manufacture hype and countdowns to trigger FOMO, pushing people to buy before they've done any real research.",
+        },
+        {
+          cat: "Memecoins & Scams",
+          q: 'What does "doing your due diligence" mean before investing in a project?',
+          options: [
+            "Buying as much as possible immediately",
+            "Researching the team, technology, tokenomics, and any audits before putting in money",
+            "Only trusting whatever a celebrity says on social media",
+            "Skipping research since all projects are equally risky",
+          ],
+          correct: 1,
+          explain:
+            "Due diligence means checking who's behind a project, whether the code has been audited, how tokens are distributed, and whether claims hold up — before, not after, investing.",
+        },
+        {
+          cat: "Memecoins & Scams",
+          q: 'What is a "honeypot" scam contract?',
+          options: [
+            "A contract that pays out double to everyone who buys",
+            "A smart contract designed so buyers can purchase the token but can't sell it, while the scammer can withdraw all the liquidity",
+            "A savings account with a high interest rate",
+            "A type of hardware wallet",
+          ],
+          correct: 1,
+          explain:
+            "A honeypot contract is coded so ordinary buyers can't sell their tokens back — only the creator's address can withdraw the liquidity, trapping everyone else's money.",
+        },
+        {
+          cat: "Memecoins & Scams",
+          q: "Why do celebrity endorsements of coins deserve extra scrutiny?",
+          options: [
+            "Celebrities are always required to have financial licenses",
+            "Paid promotions aren't the same as due diligence — several celebrity-promoted tokens have later collapsed or drawn regulatory action",
+            "Celebrities never get paid to promote coins",
+            "It guarantees the project has been audited",
+          ],
+          correct: 1,
+          explain:
+            "A celebrity being paid to promote a coin says nothing about whether the project is sound — several high-profile endorsed tokens have later crashed or triggered lawsuits and regulatory scrutiny.",
+        },
+        {
+          cat: "Memecoins & Scams",
+          q: 'What is the safest general rule when a project promises "guaranteed" high returns?',
+          options: [
+            "Guaranteed high returns are common and safe in crypto",
+            "Treat it as a major red flag — no legitimate investment can guarantee high returns with no risk",
+            "Invest your entire savings immediately",
+            "Ask a friend instead of checking the project yourself",
+          ],
+          correct: 1,
+          explain:
+            "All real investments carry risk. Any project promising guaranteed high returns with no risk is describing something that doesn't exist in legitimate markets — a hallmark of a scam.",
+        },
+
+        /* ---------- SECTION 4: Monetary System, Loans, Mortgages, Wealth ---------- */
+
+        {
+          cat: "Money, Loans & Leverage",
+          q: "What is the Federal Reserve?",
+          options: [
+            "A private crypto exchange",
+            "The central bank of the United States, responsible for monetary policy",
+            "A stock exchange in Chicago",
+            "An international trade organization",
+          ],
+          correct: 1,
+          explain:
+            'The Federal Reserve ("the Fed") is the U.S. central bank. It sets interest rates and monetary policy, aiming to manage inflation and employment.',
+        },
+        {
+          cat: "Money, Loans & Leverage",
+          q: "What is a mortgage?",
+          options: [
+            "A type of stock",
+            "A loan used to buy property, secured by that property as collateral",
+            "A government grant for first-time buyers",
+            "A savings account for retirement",
+          ],
+          correct: 1,
+          explain:
+            "A mortgage is a loan specifically for buying real estate, where the property itself serves as collateral — if payments stop, the lender can foreclose and take the property.",
+        },
+        {
+          cat: "Money, Loans & Leverage",
+          q: 'What does "leverage" mean in investing or business?',
+          options: [
+            "Avoiding all debt entirely",
+            "Using borrowed money to increase your potential returns — which also increases potential losses",
+            "A type of savings bond",
+            "A tax refund strategy",
+          ],
+          correct: 1,
+          explain:
+            "Leverage means using borrowed capital to amplify the size of an investment or purchase. It can boost gains, but it magnifies losses just as much.",
+        },
+        {
+          cat: "Money, Loans & Leverage",
+          q: "How does fractional-reserve banking let banks effectively create money through lending?",
+          options: [
+            "Banks print physical cash themselves",
+            "Banks are required to keep only a fraction of deposits on hand and can lend out the rest, which gets redeposited and lent again",
+            "Banks are not allowed to lend out any deposits",
+            "Every loan must be backed 100% by gold",
+          ],
+          correct: 1,
+          explain:
+            "Under fractional-reserve banking, a bank keeps only a portion of deposits in reserve and lends out the rest. That lent money often gets redeposited elsewhere and lent again, expanding the effective money supply.",
+        },
+        {
+          cat: "Money, Loans & Leverage",
+          q: 'What\'s a simplified version of the "buy, borrow, die" strategy sometimes used by wealthy individuals?',
+          options: [
+            "Sell all assets immediately to pay off debt",
+            "Buy appreciating assets, borrow against their value instead of selling (avoiding taxable sales), and let the assets keep growing",
+            "Avoid ever owning assets",
+            "Only use cash, never credit",
+          ],
+          correct: 1,
+          explain:
+            "Instead of selling appreciated assets (and owing capital gains tax), some wealthy individuals borrow against those assets at relatively low interest, using the loan as spendable cash while the asset keeps growing untaxed.",
+        },
+        {
+          cat: "Money, Loans & Leverage",
+          q: "What is a credit score primarily used for?",
+          options: [
+            "Determining your eligibility for a loan and the interest rate you're offered",
+            "Deciding your citizenship status",
+            "Setting your salary at a job",
+            "Choosing which stocks you can buy",
+          ],
+          correct: 0,
+          explain:
+            "A credit score summarizes your borrowing and repayment history, and lenders use it to decide whether to approve a loan and what interest rate to charge.",
+        },
+        {
+          cat: "Money, Loans & Leverage",
+          q: "What is inflation?",
+          options: [
+            "A rise in stock prices only",
+            "A general increase in prices across the economy, which reduces the purchasing power of money over time",
+            "A decrease in the number of banks",
+            "A type of loan",
+          ],
+          correct: 1,
+          explain:
+            "Inflation is a broad, sustained rise in the price level of goods and services, meaning each unit of currency buys less over time.",
+        },
+        {
+          cat: "Money, Loans & Leverage",
+          q: "Why can inflation actually benefit someone who holds fixed-rate debt and appreciating assets?",
+          options: [
+            "Inflation has no effect on debt or assets",
+            'Fixed debt payments become "cheaper" in real terms over time, while asset prices often rise with inflation',
+            "Inflation erases all debt automatically",
+            "Inflation only affects renters, not owners",
+          ],
+          correct: 1,
+          explain:
+            "If your loan payments are fixed but your income and asset values rise with inflation, the real burden of that debt shrinks over time — a dynamic that tends to favor those who already hold assets and can access credit.",
+        },
+        {
+          cat: "Money, Loans & Leverage",
+          q: "What is collateral, in the context of a loan?",
+          options: [
+            "The interest rate charged on a loan",
+            "An asset pledged to secure a loan, which the lender can seize if the borrower defaults",
+            "A type of credit card",
+            "A government subsidy",
+          ],
+          correct: 1,
+          explain:
+            "Collateral is property or an asset put up as security for a loan. If the borrower fails to repay, the lender has the right to take the collateral.",
+        },
+        {
+          cat: "Money, Loans & Leverage",
+          q: "What risk does compounding interest pose on unpaid debt (like credit card balances)?",
+          options: [
+            "The balance stays exactly the same over time",
+            "Unpaid interest gets added to the balance, so future interest is charged on a larger amount, making debt grow faster",
+            "Interest on debt always decreases over time automatically",
+            "It only applies to mortgages, never credit cards",
+          ],
+          correct: 1,
+          explain:
+            "When interest isn't paid off, it's added to the principal, and future interest is then charged on that larger total — a compounding effect that can make high-interest debt spiral quickly.",
+        },
+        {
+          cat: "Money, Loans & Leverage",
+          q: "What does a bank typically require before approving a business loan?",
+          options: [
+            "Nothing — all business loans are approved automatically",
+            "A business plan, some form of collateral or credit history, and evidence of ability to repay",
+            "Proof that the business has never made a profit",
+            "A government-issued crypto wallet",
+          ],
+          correct: 1,
+          explain:
+            "Lenders generally want to see a credible business plan, collateral or a solid credit history, and reasonable evidence the borrower can repay — reducing their risk on the loan.",
+        },
+        {
+          cat: "Money, Loans & Leverage",
+          q: "Why has access to affordable credit historically been harder for lower-income individuals than for the wealthy?",
+          options: [
+            "Lower-income individuals are legally barred from applying for loans",
+            "Lacking collateral or a long credit history makes loans riskier (and costlier) to obtain, while the wealthy can leverage existing assets for cheaper credit — widening the wealth gap over time",
+            "Banks only lend to people who don't need money",
+            "There is no difference in access at all",
+          ],
+          correct: 1,
+          explain:
+            "Without collateral or an established credit history, borrowing is riskier for a lender, so loans are harder to get or come with higher rates. Those who already have assets can borrow cheaply against them, compounding their advantage over time.",
+        },
+
+        /* ---------- SECTION 5: General Investing Concepts ---------- */
+        {
+          cat: "General Investing",
+          q: "What is a dividend?",
+          options: [
+            "A penalty for selling stock too early",
+            "A portion of a company's profit paid out to shareholders",
+            "A type of loan",
+            "A government tax on stock trades",
+          ],
+          correct: 1,
+          explain:
+            "A dividend is a share of a company's profits distributed to shareholders, typically paid on a regular schedule (like quarterly).",
+        },
+        {
+          cat: "General Investing",
+          q: 'What is market capitalization ("market cap")?',
+          options: [
+            "The maximum amount a stock is allowed to trade for",
+            "A company's share price multiplied by its total number of outstanding shares",
+            "The total tax owed by a company",
+            "The number of employees a company has",
+          ],
+          correct: 1,
+          explain:
+            "Market cap is calculated as share price × total shares outstanding, giving a rough measure of a company's total market value.",
+        },
+        {
+          cat: "General Investing",
+          q: 'What does "volatility" mean in markets?',
+          options: [
+            "The guaranteed direction prices will move",
+            "The degree to which an asset's price fluctuates over time",
+            "A tax applied to volatile stocks",
+            "A rule that halts all trading",
+          ],
+          correct: 1,
+          explain:
+            "Volatility measures how much and how quickly an asset's price swings up and down — higher volatility means bigger, more frequent price movements.",
+        },
+        {
+          cat: "General Investing",
+          q: "What is dollar-cost averaging?",
+          options: [
+            "Buying only when prices are at their absolute lowest",
+            "Investing a fixed amount at regular intervals regardless of price, which reduces the risk of badly timing the market",
+            "Converting all currency to US dollars before investing",
+            "Averaging the price of gold and silver",
+          ],
+          correct: 1,
+          explain:
+            "Dollar-cost averaging means investing the same amount on a regular schedule, buying more shares when prices are low and fewer when prices are high, smoothing out the effect of timing.",
+        },
+        {
+          cat: "General Investing",
+          q: "What is an IPO?",
+          options: [
+            "A type of retirement account",
+            "Initial Public Offering — when a private company first sells shares to the public",
+            "A government bond",
+            "A crypto exchange listing fee",
+          ],
+          correct: 1,
+          explain:
+            "An IPO (Initial Public Offering) is the process by which a private company offers shares to the public for the first time, becoming a publicly traded company.",
+        },
+        {
+          cat: "General Investing",
+          q: "What's the key difference between owning a stock and owning a bond?",
+          options: [
+            "They are identical financial instruments",
+            "A stock represents ownership in a company, while a bond represents a loan to the issuer that pays fixed interest",
+            "Bonds represent ownership, stocks represent debt",
+            "Only bonds can lose value",
+          ],
+          correct: 1,
+          explain:
+            "A stock is a share of ownership in a company (with returns tied to its performance), while a bond is essentially a loan to a company or government that pays back with interest over time.",
+        },
+        {
+          cat: "General Investing",
+          q: 'What is a market "bubble"?',
+          options: [
+            "A guaranteed safe place to invest",
+            "When asset prices rise far beyond what their underlying value can justify, often followed by a sharp crash",
+            "A type of bond fund",
+            "A government-insured savings account",
+          ],
+          correct: 1,
+          explain:
+            "A bubble occurs when speculation drives prices well above what a rational assessment of value would support — bubbles tend to end with a sharp correction once sentiment shifts.",
+        },
+        {
+          cat: "General Investing",
+          q: "Which of these is a well-known historical market bubble?",
+          options: [
+            "The Dot-com bubble of the late 1990s/2000",
+            "The Buttonwood Agreement",
+            "The founding of the Federal Reserve",
+            "Dollar-cost averaging",
+          ],
+          correct: 0,
+          explain:
+            "The Dot-com bubble saw internet-related stock prices soar in the late 1990s on hype, before crashing in 2000 when many companies proved unable to deliver real profits.",
+        },
+        {
+          cat: "General Investing",
+          q: 'What does "liquidity" mean for an asset?',
+          options: [
+            "How much dividend it pays",
+            "How easily and quickly it can be converted to cash without significantly affecting its price",
+            "How volatile its price is",
+            "How much debt is attached to it",
+          ],
+          correct: 1,
+          explain:
+            "Liquidity describes how easily an asset can be sold for cash without a big price discount — cash is the most liquid asset, while real estate is comparatively illiquid.",
+        },
+        {
+          cat: "General Investing",
+          q: "What is an ETF (Exchange-Traded Fund)?",
+          options: [
+            "A type of bank loan",
+            "A fund that trades on an exchange like a stock, often tracking an index or sector",
+            "A tax form for crypto",
+            "A government savings bond",
+          ],
+          correct: 1,
+          explain:
+            "An ETF holds a basket of assets (often tracking an index) but trades throughout the day on an exchange just like an individual stock, combining diversification with easy trading.",
+        },
+        {
+          cat: "General Investing",
+          q: "Why do many financial advisors recommend building an emergency fund before investing heavily?",
+          options: [
+            "Emergency funds guarantee higher investment returns",
+            "So you're not forced to sell investments at a loss just to cover an unexpected expense",
+            "Because investing is illegal without one",
+            "Emergency funds are required by law before opening a brokerage account",
+          ],
+          correct: 1,
+          explain:
+            "Having cash set aside for emergencies means a surprise expense doesn't force you to sell investments (possibly at a loss) at an inconvenient time.",
+        },
+        {
+          cat: "General Investing",
+          q: "What's a common golden rule experienced investors give beginners about risky assets like memecoins?",
+          options: [
+            "Borrow as much as possible to invest in them",
+            "Only ever invest money you can afford to lose completely",
+            "Always invest your entire savings in the newest trending coin",
+            "Ignore research and just follow social media hype",
+          ],
+          correct: 1,
+          explain:
+            "Because highly speculative assets can lose most or all of their value quickly, the standard advice is to only risk money you could fully afford to lose without it affecting your life.",
+        },
+      ];
+
+      let current = 0;
+      let score = 0;
+      let missed = 0;
+      let timeLeft = 20;
+      let timerId = null;
+      let answered = false;
+      const TIME_PER_Q = 20;
+
+      const startScreen = document.getElementById("startScreen");
+      const quizScreen = document.getElementById("quizScreen");
+      const resultsScreen = document.getElementById("resultsScreen");
+      const startBtn = document.getElementById("startBtn");
+      const restartBtn = document.getElementById("restartBtn");
+
+      const qNumEl = document.getElementById("qNum");
+      const timerBox = document.getElementById("timerBox");
+      const progressFill = document.getElementById("progressFill");
+      const categoryTag = document.getElementById("categoryTag");
+      const questionText = document.getElementById("questionText");
+      const optionsWrap = document.getElementById("optionsWrap");
+      const okCountEl = document.getElementById("okCount");
+      const noCountEl = document.getElementById("noCount");
+
+      const modalBackdrop = document.getElementById("modalBackdrop");
+      const modalVerdict = document.getElementById("modalVerdict");
+      const modalHeadline = document.getElementById("modalHeadline");
+      const modalAnswerLine = document.getElementById("modalAnswerLine");
+      const modalExplain = document.getElementById("modalExplain");
+      const modalNextBtn = document.getElementById("modalNextBtn");
+
+      function buildTicker() {
+        const symbols = [
+          ["S&P 500", true],
+          ["BTC", true],
+          ["ETH", false],
+          ["VOO", true],
+          ["DOGE", false],
+          ["NYSE", true],
+          ["DJIA", false],
+          ["NASDAQ", true],
+          ["SHIB", false],
+          ["GOLD", true],
+          ["SQUID", false],
+          ["VTI", true],
+        ];
+        const track = document.getElementById("tickerTrack");
+        let html = "";
+        for (let i = 0; i < 3; i++) {
+          symbols.forEach(([name, up]) => {
+            const pct = (Math.random() * 4 + 0.1).toFixed(2);
+            html += `<span class="${up ? "up" : "down"}">${name} ${up ? "▲" : "▼"} ${pct}%</span>`;
+          });
+        }
+        track.innerHTML = html;
+      }
+      buildTicker();
+
+      let audioCtx = null;
+      function getCtx() {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        return audioCtx;
+      }
+
+      function playCorrectSound() {
+        try {
+          const ctx = getCtx();
+          const now = ctx.currentTime;
+          [523.25, 659.25, 783.99].forEach((freq, i) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = "sine";
+            osc.frequency.value = freq;
+            gain.gain.setValueAtTime(0.0001, now + i * 0.09);
+            gain.gain.exponentialRampToValueAtTime(0.18, now + i * 0.09 + 0.02);
+            gain.gain.exponentialRampToValueAtTime(
+              0.0001,
+              now + i * 0.09 + 0.28,
+            );
+            osc.connect(gain).connect(ctx.destination);
+            osc.start(now + i * 0.09);
+            osc.stop(now + i * 0.09 + 0.3);
+          });
+        } catch (e) {}
+      }
+
+      function playWrongSound() {
+        try {
+          const ctx = getCtx();
+          const now = ctx.currentTime;
+          const osc = ctx.createOscillator();
+          const osc2 = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = "sawtooth";
+          osc2.type = "square";
+          osc.frequency.setValueAtTime(180, now);
+          osc.frequency.exponentialRampToValueAtTime(90, now + 0.35);
+          osc2.frequency.setValueAtTime(174, now);
+          osc2.frequency.exponentialRampToValueAtTime(86, now + 0.35);
+          gain.gain.setValueAtTime(0.16, now);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.4);
+          osc.connect(gain);
+          osc2.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now);
+          osc2.start(now);
+          osc.stop(now + 0.42);
+          osc2.stop(now + 0.42);
+        } catch (e) {
+          /* audio not available, fail silently */
+        }
+      }
+
+      startBtn.addEventListener("click", () => {
+        startScreen.classList.add("hidden");
+        quizScreen.classList.remove("hidden");
+        loadQuestion();
+      });
+
+      restartBtn.addEventListener("click", () => {
+        current = 0;
+        score = 0;
+        missed = 0;
+        resultsScreen.classList.add("hidden");
+        quizScreen.classList.remove("hidden");
+        loadQuestion();
+      });
+
+      modalNextBtn.addEventListener("click", () => {
+        modalBackdrop.classList.add("hidden");
+        current++;
+        if (current >= QUESTIONS.length) {
+          showResults();
+        } else {
+          loadQuestion();
+        }
+      });
+
+      function loadQuestion() {
+        answered = false;
+        clearInterval(timerId);
+        timeLeft = TIME_PER_Q;
+
+        const q = QUESTIONS[current];
+        qNumEl.textContent = current + 1;
+        progressFill.style.width = (current / QUESTIONS.length) * 100 + "%";
+        categoryTag.textContent = q.cat;
+        questionText.textContent = q.q;
+        okCountEl.textContent = `Correct: ${score}`;
+        noCountEl.textContent = `Missed: ${missed}`;
+
+        optionsWrap.innerHTML = "";
+        const letters = ["A", "B", "C", "D"];
+        q.options.forEach((opt, idx) => {
+          const btn = document.createElement("button");
+          btn.className = "option";
+          btn.innerHTML = `<span class="letter">${letters[idx]}</span><span>${opt}</span>`;
+          btn.addEventListener("click", () => selectAnswer(idx));
+          optionsWrap.appendChild(btn);
+        });
+
+        timerBox.textContent = timeLeft + "s";
+        timerBox.classList.remove("warn");
+        timerId = setInterval(() => {
+          timeLeft--;
+          timerBox.textContent = timeLeft + "s";
+          if (timeLeft <= 5) timerBox.classList.add("warn");
+          if (timeLeft <= 0) {
+            clearInterval(timerId);
+            if (!answered) selectAnswer(-1); // timeout counts as unanswered/wrong
+          }
+        }, 1000);
+      }
+
+      function selectAnswer(chosenIdx) {
+        if (answered) return;
+        answered = true;
+        clearInterval(timerId);
+
+        const q = QUESTIONS[current];
+        const buttons = optionsWrap.querySelectorAll(".option");
+        buttons.forEach((b) => (b.disabled = true));
+
+        const isCorrect = chosenIdx === q.correct;
+
+        buttons.forEach((b, idx) => {
+          if (idx === q.correct) b.classList.add("correct");
+          else if (idx === chosenIdx) b.classList.add("wrong");
+        });
+
+        if (isCorrect) {
+          score++;
+          playCorrectSound();
+          modalVerdict.textContent = "CORRECT";
+          modalVerdict.className = "verdict ok";
+          modalHeadline.textContent = "Nice — that's right.";
+          modalAnswerLine.innerHTML = `<b>Answer:</b> ${q.options[q.correct]}`;
+        } else {
+          missed++;
+          playWrongSound();
+          modalVerdict.textContent =
+            chosenIdx === -1 ? "TIME'S UP" : "INCORRECT";
+          modalVerdict.className = "verdict no";
+          modalHeadline.textContent =
+            chosenIdx === -1 ? "Ran out of time." : "Not quite.";
+          modalAnswerLine.innerHTML = `<b>Correct answer:</b> ${q.options[q.correct]}`;
+        }
+        modalExplain.textContent = q.explain;
+        okCountEl.textContent = `Correct: ${score}`;
+        noCountEl.textContent = `Missed: ${missed}`;
+        progressFill.style.width =
+          ((current + 1) / QUESTIONS.length) * 100 + "%";
+
+        setTimeout(() => modalBackdrop.classList.remove("hidden"), 250);
+      }
+
+      function showResults() {
+        quizScreen.classList.add("hidden");
+        resultsScreen.classList.remove("hidden");
+
+        const pct = Math.round((score / QUESTIONS.length) * 100);
+        document.getElementById("resultPct").textContent = pct + "%";
+        document.getElementById("resultFrac").textContent =
+          `${score} / ${QUESTIONS.length}`;
+
+        let verdict;
+        if (pct >= 85)
+          verdict =
+            "Sharp. You clearly know your way around markets, crypto, and how scams operate.";
+        else if (pct >= 65)
+          verdict =
+            "Solid grasp of the fundamentals — a bit more study on the scam patterns and monetary system will round it out.";
+        else if (pct >= 40)
+          verdict =
+            "You know some basics, but brush up before putting real money near crypto or leveraged bets.";
+        else
+          verdict =
+            "This is exactly why the drill exists — go slow, research everything, and never invest what you can't afford to lose.";
+        document.getElementById("resultVerdict").textContent = verdict;
+
+        const breakdown = document.getElementById("breakdown");
+        breakdown.innerHTML = `
+    <div class="breakdown-row"><span>Total questions</span><span>${QUESTIONS.length}</span></div>
+    <div class="breakdown-row"><span>Correct answers</span><span>${score}</span></div>
+    <div class="breakdown-row"><span>Missed / wrong</span><span>${missed}</span></div>
+    <div class="breakdown-row"><span>Accuracy</span><span>${pct}%</span></div>
+  `;
+      }
+    </script>
+  </body>
+</html>

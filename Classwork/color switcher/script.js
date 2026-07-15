@@ -1,6 +1,4 @@
-// ================================
-// ELEMENTS
-// ================================
+
 
 const body = document.body;
 
@@ -20,9 +18,8 @@ const rgbValue = document.getElementById("rgbValue");
 
 const buttons = document.querySelectorAll(".color-btn");
 
-// ================================
-// COLOR INFORMATION
-// ================================
+
+
 
 const colorInfo = {
 
@@ -93,9 +90,7 @@ const colorInfo = {
 
 };
 
-// ================================
-// COLOR MIXES
-// ================================
+
 
 const colorMixes = {
 
@@ -125,9 +120,7 @@ const colorMixes = {
 
 };
 
-// ================================
-// UPDATE DISPLAY
-// ================================
+
 
 function updateDisplay(color){
 
@@ -148,9 +141,7 @@ function updateDisplay(color){
 
 }
 
-// ================================
-// COLOR BUTTONS
-// ================================
+
 
 buttons.forEach(function(button){
 
@@ -162,9 +153,6 @@ buttons.forEach(function(button){
 
 });
 
-// ================================
-// MIX COLORS
-// ================================
 
 mixBtn.addEventListener("click",function(){
 
@@ -189,9 +177,6 @@ mixBtn.addEventListener("click",function(){
 
 });
 
-// ================================
-// ENTER KEY SUPPORT
-// ================================
 
 input.addEventListener("keypress",function(event){
 
@@ -203,9 +188,6 @@ input.addEventListener("keypress",function(event){
 
 });
 
-// ================================
-// RESET BUTTON
-// ================================
 
 resetBtn.addEventListener("click",function(){
 
