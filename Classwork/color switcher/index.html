@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Mix Lab</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>🌈 Color Mix Laboratory</h1>
+
+      <p>
+        Mix colors using the buttons below or type a combination like
+        <strong>red+blue</strong>.
+      </p>
+
+      <!-- Minecraft Cube -->
+      <div class="cube-container">
+        <div id="cube" class="cube"></div>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="search-box">
+        <input type="text" id="colorInput" placeholder="Example: red+blue" />
+
+        <button id="mixBtn">Mix Colors</button>
+      </div>
+
+      <hr />
+
+      <!-- Color Buttons -->
+
+      <h2>Primary Colors</h2>
+
+      <div class="buttons">
+        <button class="color-btn" id="red">🔴 Red</button>
+
+        <button class="color-btn" id="blue">🔵 Blue</button>
+
+        <button class="color-btn" id="green">🟢 Green</button>
+
+        <button class="color-btn" id="yellow">🟡 Yellow</button>
+
+        <button class="color-btn" id="black">⚫ Black</button>
+
+        <button class="color-btn" id="white">⚪ White</button>
+      </div>
+
+      <br />
+
+      <button id="resetBtn">Reset Background</button>
+
+      <hr />
+
+      <!-- Result Panel -->
+
+      <div class="result-box">
+        <h2>Mixed Color Result</h2>
+
+        <h3 id="colorName">None</h3>
+
+        <p>
+          <strong>HEX:</strong>
+          <span id="hexValue"> --- </span>
+        </p>
+
+        <p>
+          <strong>RGB:</strong>
+          <span id="rgbValue"> --- </span>
+        </p>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
